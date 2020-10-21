@@ -1,14 +1,19 @@
 import React from "react"
 import Image from "gatsby-image"
-
-const Project = ({ image, title, url }) => {
+const Project = ({ id, name, image, url }) => {
   return (
-    <a href={url} target="_blank" rel="noopener noreferrer" className="project">
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="project"
+      key={id}
+    >
       <article>
-        <Image fluid={image.fluid} alt={title}></Image>
-        <div className="project-footer">
-          <h4>{title}</h4>
-        </div>
+        <Image fluid={image} />
+        <footer>
+          <h4>{name}</h4>
+        </footer>
       </article>
     </a>
   )

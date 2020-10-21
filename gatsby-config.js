@@ -4,7 +4,7 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     title: `John Smilga`,
-    description: `Basic Javascript Projects`,
+    description: `Vanilla Javascript Projects`,
     author: `@johnsmilga`,
     twitterUsername: "@john_smilga",
     image: "/mainBcg.jpeg",
@@ -22,11 +22,17 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      resolve: `gatsby-source-contentful`,
+      resolve: `gatsby-source-airtable`,
       options: {
-        spaceId: process.env.SPACE_ID,
-        // Learn about environment variables: https://gatsby.dev/env-vars
-        accessToken: process.env.ACCESS_TOKEN,
+        apiKey: process.env.GATSBY_AIRTABLE_API,
+        concurrency: 5,
+        tables: [
+          {
+            baseId: process.env.GATSBY_AIRTABLE_BASE_ID,
+            tableName: `Projects`,
+            mapping: { image: `fileNode` },
+          },
+        ],
       },
     },
     `gatsby-plugin-sitemap`,
