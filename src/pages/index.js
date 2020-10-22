@@ -42,8 +42,8 @@ const IndexPage = ({
           start course
         </a>
       </div>
-      <Projects title="dom projects" projects={domProjects} />
-      <Projects title="basic API projects" projects={apiProjects} />
+      <Projects title="DOM projects" projects={domProjects} />
+      <Projects title="first API projects" projects={apiProjects} />
       <Projects title="ES6 projects" projects={es6Projects} />
       <Projects title="e-commerce project" projects={storeProjects} />
     </Layout>
