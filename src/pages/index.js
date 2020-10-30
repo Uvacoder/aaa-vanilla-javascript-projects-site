@@ -43,8 +43,8 @@ const IndexPage = ({
         </a>
       </div>
       <Projects title="DOM projects" projects={domProjects} />
-      <Projects title="first API projects" projects={apiProjects} />
-      <Projects title="ES6 projects" projects={es6Projects} />
+      <Projects title="basic API projects" projects={apiProjects} />
+      <Projects title="ES6 &amp; advanced API" projects={es6Projects} />
       <Projects title="e-commerce project" projects={storeProjects} />
     </Layout>
   )
