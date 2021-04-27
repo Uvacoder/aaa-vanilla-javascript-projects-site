@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import Hero from "../components/Hero"
 import Projects from "../components/Projects"
-
+import Seo from "../components/seo"
 const HomePage = ({ data }) => {
   const {
     allAirtable: { nodes: projects },
@@ -22,6 +22,7 @@ const HomePage = ({ data }) => {
     .sort((a, b) => a.order - b.order)
   return (
     <>
+      <Seo title="Javascript Projects" />
       <Hero />
       <Projects title="DOM projects" projects={domProjects} />
       <Projects title="Course Exclusive" projects={restProjects} />
