@@ -1,13 +1,13 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import Hero from '../components/Hero'
-import Projects from '../components/Projects'
-import SEO from '../components/SEO'
+import React from "react"
+import { graphql } from "gatsby"
+import Hero from "../components/Hero"
+import Projects from "../components/Projects"
+
 const HomePage = ({ data }) => {
   const {
     allAirtable: { nodes: projects },
   } = data
-  const formattedProjects = projects.map(project => {
+  const formattedProjects = projects.map((project) => {
     return {
       id: project.id,
       ...project.data,
@@ -15,14 +15,13 @@ const HomePage = ({ data }) => {
     }
   })
   const domProjects = formattedProjects
-    .filter(project => project.type === 'dom')
+    .filter((project) => project.type === "dom")
     .sort((a, b) => a.order - b.order)
   const restProjects = formattedProjects
-    .filter(project => project.type === 'rest')
+    .filter((project) => project.type === "rest")
     .sort((a, b) => a.order - b.order)
   return (
     <>
-      <SEO title="Javascript Projects" />
       <Hero />
       <Projects title="DOM projects" projects={domProjects} />
       <Projects title="Course Exclusive" projects={restProjects} />
