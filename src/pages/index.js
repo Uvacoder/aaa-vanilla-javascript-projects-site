@@ -1,52 +1,32 @@
-import React from "react"
-import Layout from "../components/layout"
-import Projects from "../components/Projects"
-import SEO from "../components/seo"
-import { graphql } from "gatsby"
-const url =
-  "https://www.udemy.com/course/javascript-tutorial-for-beginners-w/?referralCode=DD9FA6C0D976918D3E1C"
-const IndexPage = ({
-  data: {
+import React from 'react'
+import { graphql } from 'gatsby'
+import Hero from '../components/Hero'
+import Projects from '../components/Projects'
+import SEO from '../components/SEO'
+const HomePage = ({ data }) => {
+  const {
     allAirtable: { nodes: projects },
-  },
-}) => {
+  } = data
   const formattedProjects = projects.map(project => {
     return {
       id: project.id,
       ...project.data,
-      image: project.data.image.localFiles[0].childImageSharp.fluid,
+      image: project.data.image.localFiles[0].childImageSharp.gatsbyImageData,
     }
   })
   const domProjects = formattedProjects
-    .filter(project => project.type === "dom")
+    .filter(project => project.type === 'dom')
     .sort((a, b) => a.order - b.order)
-  const apiProjects = formattedProjects
-    .filter(project => project.type === "api")
+  const restProjects = formattedProjects
+    .filter(project => project.type === 'rest')
     .sort((a, b) => a.order - b.order)
-
-  const es6Projects = formattedProjects
-    .filter(project => project.type === "es6")
-    .sort((a, b) => a.order - b.order)
-  const storeProjects = formattedProjects
-    .filter(project => project.type === "store")
-    .sort((a, b) => a.order - b.order)
-
   return (
-    <Layout>
-      <SEO title="Javascript Projects"></SEO>
-      <header className="hero">
-        <h1>vanilla javascript projects</h1>
-      </header>
-      <div className="course-link">
-        <a href={url} target="_blank" rel="noopener noreferrer">
-          start course
-        </a>
-      </div>
+    <>
+      <SEO title="Javascript Projects" />
+      <Hero />
       <Projects title="DOM projects" projects={domProjects} />
-      <Projects title="basic API" projects={apiProjects} />
-      <Projects title="ES6 &amp; advanced API" projects={es6Projects} />
-      <Projects title="e-commerce " projects={storeProjects} />
-    </Layout>
+      <Projects title="Course Exclusive" projects={restProjects} />
+    </>
   )
 }
 
@@ -54,25 +34,23 @@ export const query = graphql`
   {
     allAirtable(sort: { fields: data___order, order: ASC }) {
       nodes {
+        id
         data {
-          url
-          type
-          order
           name
+          order
+          type
+          url
           image {
             localFiles {
               childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
+                gatsbyImageData(layout: CONSTRAINED, placeholder: TRACED_SVG)
               }
             }
           }
         }
-        id
       }
     }
   }
 `
 
-export default IndexPage
+export default HomePage
