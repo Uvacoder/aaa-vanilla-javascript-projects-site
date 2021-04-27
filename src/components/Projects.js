@@ -1,8 +1,7 @@
-import React from 'react'
-import styled from 'styled-components'
-import Project from './Project'
+import React from "react"
+import styled from "styled-components"
+import Project from "./Project"
 const Projects = ({ title, projects }) => {
-  console.log(projects)
   return (
     <Wrapper>
       <div className="title">
@@ -10,7 +9,7 @@ const Projects = ({ title, projects }) => {
         <div className="title-underline"></div>
       </div>
       <div className="section-center">
-        {projects.map(project => {
+        {projects.map((project) => {
           return <Project key={project.id} {...project} />
         })}
       </div>
