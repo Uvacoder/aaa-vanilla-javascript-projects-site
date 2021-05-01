@@ -1,6 +1,6 @@
-import React from 'react'
-import { GatsbyImage } from 'gatsby-plugin-image'
-import styled from 'styled-components'
+import React from "react"
+import { GatsbyImage } from "gatsby-plugin-image"
+import styled from "styled-components"
 const Project = ({ name, image, url }) => {
   return (
     <Wrapper
@@ -42,11 +42,13 @@ const Wrapper = styled.a`
     text-align: center;
     padding: 1rem 1.25rem;
     background: var(--yellow-light);
+    border-bottom-left-radius: var(--borderRadius);
+    border-bottom-right-radius: var(--borderRadius);
   }
   footer h5 {
     margin-bottom: 0;
     color: var(--yellow-dark);
-    font-weight: 600;
+    font-weight: 500;
   }
 `
 
